@@ -1,0 +1,9 @@
+fastapi[standard]
+sqlmodel
+psycopg[binary]
+pydantic
+pydantic-settings
+redis
+httpx
+pytest
+pytest-asyncio
