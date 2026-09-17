@@ -1,0 +1,27 @@
+services:
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: taller-postgres
+
+    environment:
+      POSTGRES_DB: taller_db
+      POSTGRES_USER: taller_user
+      POSTGRES_PASSWORD: taller_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taller_user -d taller_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
