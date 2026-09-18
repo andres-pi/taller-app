@@ -6,7 +6,7 @@ from src.core.dependencies import obtener_cliente_use_case
 
 router = APIRouter(prefix="/clientes", tags=["Clientes"])
 
-@router.get("/{id}", response_model=ClienteRespuesta)
+@router.get("/{id}", response_model=ClienteRespuesta, status_code=status.HTTP_200_OK)
 async def obtener_por_id(
     id: int,
     use_case: ObtenerCliente = Depends(obtener_cliente_use_case)
