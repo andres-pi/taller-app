@@ -17,9 +17,9 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-app.include_router(clientes_router)
+app.include_router(clientes_router, prefix=settings.app_v1_str)
 
-@app.get("/", tags=["System"])
+@app.get("/", tags=["System"], include_in_schema=False)
 def root():
     return {
         "message": "Taller API",
