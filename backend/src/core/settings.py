@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     app_name: str
     app_version: str = "1.0.0"
     app_env: str
-    app_debug: str
+    app_debug: bool
 
     app_port: int
 

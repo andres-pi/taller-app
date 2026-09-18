@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from core.settings import settings
+from src.core.settings import settings
+
+from src.infrastructure.api.routers.clientes_router import router as clientes_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -14,6 +16,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.include_router(clientes_router)
 
 @app.get("/", tags=["System"])
 def root():
