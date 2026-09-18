@@ -907,17 +907,18 @@ Se practicarán:
 taller-app/
 │
 ├── backend/
-│   ├── app/
+│   ├── src/
 │   ├── tests/
 │   ├── Dockerfile
 │   ├── requirements.txt
-│   └── .env.example
+│   └── .env
 │
 ├── frontend/
 │   ├── src/
 │   ├── public/
 │   ├── Dockerfile
-│   └── package.json
+│   ├── package.json
+│   └── .env.local
 │
 ├── docker-compose.yml
 ├── .gitignore
