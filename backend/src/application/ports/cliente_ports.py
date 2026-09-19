@@ -8,3 +8,6 @@ class ClientePort(Protocol):
 
     def obtener_todos(self) -> list[Cliente]:
         ...
+
+    def guardar(self, cliente: Cliente) -> Cliente:
+        ...

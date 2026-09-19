@@ -4,7 +4,8 @@ from sqlmodel import Session
 from src.application.ports.cliente_ports import ClientePort
 from src.application.use_cases.clientes import (
     ObtenerCliente,
-    ObtenerClientes
+    ObtenerClientes,
+    CrearCliente
 )
 from src.infrastructure.database.clientes.clientes_repository import ClienteRepository
 from src.infrastructure.database.session import obtener_session
@@ -21,3 +22,6 @@ def obtener_cliente_use_case(cliente_port: ClientePort = Depends(obtener_cliente
 
 def obtener_clientes_use_case(cliente_port: ClientePort = Depends(obtener_cliente_repository),) -> ObtenerClientes:
     return ObtenerClientes(cliente_port) 
+
+def crear_cliente_use_case(cliente_port: ClientePort = Depends(obtener_cliente_repository),) -> CrearCliente:
+    return CrearCliente(cliente_port)

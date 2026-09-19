@@ -6,7 +6,7 @@ class ClienteBase(BaseModel):
     telefono: str
     email: EmailStr | None = None
 
-class CrearCliente(ClienteBase):
+class ClienteNuevo(ClienteBase):
     pass
 
 class ClienteRespuesta(ClienteBase):

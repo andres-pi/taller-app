@@ -39,3 +39,24 @@ class ClienteRepository:
             )
             for modelo in modelos
         ]
+
+    def guardar(self, cliente: Cliente) -> Cliente:
+
+        modelo = ClienteModel(
+            nombre=cliente.nombre,
+            apellido=cliente.apellido,
+            telefono=cliente.telefono,
+            email=cliente.email
+        )
+
+        self.session.add(modelo)
+        self.session.commit()
+        self.session.refresh(modelo)
+
+        return Cliente(
+            id=modelo.id,
+            nombre=modelo.nombre,
+            apellido=modelo.apellido,
+            telefono=modelo.telefono,
+            email=modelo.email
+        )
