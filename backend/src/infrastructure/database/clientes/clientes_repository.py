@@ -60,3 +60,28 @@ class ClienteRepository:
             telefono=modelo.telefono,
             email=modelo.email
         )
+
+
+    def actualizar(self, cliente: Cliente) -> Cliente:
+
+        modelo = self.session.get(ClienteModel, cliente.id)
+
+        if modelo is None: return None
+
+        modelo.nombre = cliente.nombre
+        modelo.apellido = cliente.apellido
+        modelo.telefono = cliente.telefono
+        modelo.email = cliente.email
+
+        self.session.add(modelo)
+        self.session.commit()
+        self.session.refresh(modelo)
+
+        return Cliente(
+            id=modelo.id,
+            nombre=modelo.nombre,
+            apellido=modelo.apellido,
+            telefono=modelo.telefono,
+            email=modelo.email
+        )
+        

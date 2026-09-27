@@ -11,3 +11,6 @@ class ClientePort(Protocol):
 
     def guardar(self, cliente: Cliente) -> Cliente:
         ...
+
+    def actualizar(self, cliente: Cliente) -> Cliente:
+        ...
