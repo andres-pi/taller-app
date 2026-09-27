@@ -5,7 +5,7 @@ from src.application.use_cases.clientes import (
     ObtenerClientes,
     CrearCliente
 )
-from src.infrastructure.api.dto.cliente_dto import (
+from src.infrastructure.api.v1.dto.cliente_dto import (
     ClienteNuevo,
     ClienteRespuesta
 )
