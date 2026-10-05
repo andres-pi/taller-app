@@ -8,16 +8,18 @@ export const Header = () =>  {
     return (
         <header className="header">
             <div className="header__search">
-                <Search size={18} />
+                <Search className='search-icon' size={18} />
 
                 <input
                     type="text"
                     placeholder="Buscar..."
                 />
 
-                <span className="header__shortcut">
-                    Ctrl K
-                </span>
+                <div className="header__shortcut">
+                    <span>Ctrl</span>
+                    <span>K</span>
+                </div>
+
             </div>
 
             <div className="header__actions">
@@ -25,9 +27,12 @@ export const Header = () =>  {
                     className="header__notification"
                     aria-label="Notificaciones"
                 >
-                    <Bell size={19} />
+                    <Bell size={20} strokeWidth={2} />
                     <span className="header__notification-dot" />
                 </button>
+                <div className="header__profile">
+                    <div className="profile-avatar">AP</div>
+                </div>
             </div>
         </header>
     )
