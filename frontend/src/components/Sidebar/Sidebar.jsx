@@ -22,30 +22,24 @@ export const Sidebar = () => {
 
     return (
         <aside className="sidebar">
-            <div className="sidebar-brand">
-                <h2>Taller APP</h2>
+            <div className="sidebar__brand">
+                <div className="brand-logo">T</div>
+                <div className="brand-text">
+                    <h2>Taller APP</h2>
+                </div>
             </div>
 
-            <nav className="sidebar-menu">
+            <nav className="sidebar__menu">
                 {menuItems.map((item) => {
                     const IconComponent = item.icon
-
                     return (
                         <NavLink
                             key={item.path}
                             to={item.path}
-                            className={({ isActive }) =>
-                                `menu-btn ${
-                                    isActive ? "active" : ""
-                                }`
-                            }
+                            className={({ isActive }) => `menu-btn ${isActive ? "active" : ""}`}
                         >
-                            <IconComponent
-                                className="menu-icon"
-                                size={20}
-                            />
-
-                            {item.label}
+                            <IconComponent className="menu-icon" size={20} strokeWidth={2} />
+                            <span className="menu-label">{item.label}</span>
                         </NavLink>
                     )
                 })}
