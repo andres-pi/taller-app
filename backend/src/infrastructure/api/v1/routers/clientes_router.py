@@ -7,12 +7,14 @@ from src.application.use_cases.clientes import (
     ActualizarCliente,
     EditarCliente
 )
+from src.application.use_cases.equipos import ObtenerEquiposPorCliente
 from src.infrastructure.api.v1.dto.cliente_dto import (
     ClienteNuevo,
     ClienteRespuesta,
     ClienteActualizar,
     ClienteEditar
 )
+from src.infrastructure.api.v1.dto.equipo_dto import EquipoRespuesta
 from src.core.deps.clientes_deps import (
     obtener_cliente_use_case,
     obtener_clientes_use_case,
@@ -20,6 +22,7 @@ from src.core.deps.clientes_deps import (
     actualizar_cliente_use_case,
     editar_cliente_use_case
 )
+from src.core.deps.equipos_deps import obtener_equipos_por_cliente_use_case
 
 router = APIRouter(prefix="/clientes", tags=["Clientes"])
 
@@ -128,3 +131,25 @@ def editar(
             detail=f"Cliente con {id} no encontrado"
         )
     return ClienteRespuesta.model_validate(cliente)
+
+
+@router.get("/{id}/equipos", response_model=list[EquipoRespuesta], status_code=status.HTTP_200_OK)
+def obtener_equipos_de_cliente(
+    id: int,
+    cliente_use_case: ObtenerCliente = Depends(obtener_cliente_use_case),
+    equipos_use_case: ObtenerEquiposPorCliente = Depends(obtener_equipos_por_cliente_use_case)
+):
+    cliente = cliente_use_case.ejecutar(id)
+
+    if cliente is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Cliente con id {id} no encontrado"
+        )
+
+    equipos = equipos_use_case.ejecutar(id)
+
+    return [
+        EquipoRespuesta.model_validate(equipo.__dict__)
+        for equipo in equipos
+    ]
